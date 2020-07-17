@@ -94,7 +94,7 @@ app.setErrorHandler((error, request, reply) => {
 app.listen(59101, '0.0.0.0');
 ```
 
-### index.html ###
+### index.html
 ```
 <!DOCTYPE html>
 <html lang="en">
@@ -169,11 +169,11 @@ const result = await new Promise((resolve, reject) => {
 });
 ```
 
-### First thoughts on how to get the flag ###
+## First thoughts on how to get the flag
 If it was possible, we would give as input that the converter (request.body.converter)
 is 'FLAG_${request.session.sessionId}', with request.body.input set to any
 arbitrary string between 20 and 1000 characters (to avoid the web app throwing
-an error).
+an error, noting that the flagConverter function doesn't actually use the input).
 
 Then the resulting code (depending on the sessionId, with example input
 'zzzzzzzzzzzzzzzzzzzz') would be something like:
@@ -203,8 +203,75 @@ const result = await new Promise((resolve, reject) => {
 });
 ```
 
-Provided the Promise resolved successfully, this would give us the flag.
+Provided the Promise fulfills, this would store the flag in the result constant,
+which would subsequently be sent to the front end in the following code:
+
+```
+reply.view('index.html', {
+  input: request.body.input,
+  result,
+  sessionId: request.session.sessionId,
+});
+```
 
 However, since the converter variable can not match the /[FLAG]/ regex, we will be
-unsuccessful setting the converter (request.body.converter) to
-'FLAG_${request.session.sessionId}''.
+unsuccessful if trying to set the converter (request.body.converter) to
+\`FLAG_${request.session.sessionId}\`.
+
+## An actual solution
+
+### \_\_defineSetter\_\_
+Use the [\_\_defineSetter\_\_](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Object/__defineSetter__) method on the converters object to bind
+"an object's property to a function to be called when an attempt is made to set
+that property."
+
+**Syntax:**\
+`converters.__defineSetter__(property, function);`
+
+Now, we can give the following inputs:
+* converter: '\_\_defineSetter\_\_'
+* input: 'FLAG_${request.session.sessionId}'
+
+Thus, the resulting call, depending on the sessionId, will be something like:
+```
+const result = await new Promise((resolve, reject) => {
+  converters['__defineSetter__']('FLAG_R3EJRIyxaosT3czNb-qxApiZuWbYTRQH', (error, result) => {
+    if (error) {
+      reject(error);
+    } else {
+      resolve(result);
+    }
+  });
+});
+```
+
+To clarify, the setter function for converters['FLAG_R3EJRIyxaosT3czNb-qxApiZuWbYTRQH']
+is now:
+```
+(error, result) => {
+  if (error) {
+    reject(error);
+  } else {
+    resolve(result);
+  }
+}
+```
+
+If we inspect the converters object before and after calling \_\_defineSetter\_\_
+on the converters object, we will see that the value of
+converters[FLAG_${request.session.sessionId}] changes:
+
+Initial value:\
+`FLAG_kO7GD6JtnAXSK2HnzZ8qkNxl6reWN_ml: [Function: flagConverter]`
+
+Value after \_\_defineSetter\_\_:\
+`FLAG_kO7GD6JtnAXSK2HnzZ8qkNxl6reWN_ml: [Setter]`
+
+If we now make a final post request, the code will yet again attempt to assign
+the converters[FLAG_${request.session.sessionId}] to the flagConverter function:
+``converters[`FLAG_${request.session.sessionId}`] = flagConverter;``
+
+However, since converters[\`FLAG_${request.session.sessionId}\`] is now
+assigned to a setter method, the setter method will run with flagConverter as
+the argument. Because the setter method is no longer wrapped in a promise,
+an error will occur, as the reject method is no longer defined.
