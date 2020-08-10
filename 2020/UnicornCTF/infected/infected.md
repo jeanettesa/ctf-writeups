@@ -11,7 +11,7 @@ Link to zip: https://mega.nz/file/f1sUAaLB#mpfkfCzWNh7AWMxoT08YincX1xW3cdfjxEWuN
 To do this problem I decided to use Python. My attempt was based on brute force. I had not worked on a similar problem before, and finished just after the competition closed. Still, it was an interesting exercise, and a good learning experience.
 
 ## Concepts
-### Zip headers
+### Zip structure
 Literature:
 [The structure of a PKZip file](https://users.cs.jmu.edu/buchhofp/forensics/formats/pkzip.html)
 
@@ -31,7 +31,7 @@ This command returns 0 if no errors.
 ## Solution
 First I tried to unzip the file, but the specified password was not accepted.
 
-Reading about zip file structure, I found that the CRC was located in byte 14-17 of the local file header. Since two bytes in this section have been altered, we need to restore the correct byte values (thus correcting the zip file error). 
+Reading about zip file structure, I found that the CRC was located in byte 14-17 of the local file header. Since two bytes in this section have been altered, we need to restore the correct byte values (thus correcting the zip file error).
 
 I looked for a command to check for errors in the zip file (so that I would know when the error was corrected) and played around with changing the CRC in hexeditor.
 
@@ -43,25 +43,25 @@ import subprocess
 from itertools import combinations
 
 def changeFile(file, fromRange, toRange):
-    # Store the exhaustive list of any two byte values of the CRC
+    # Store the list of any two bytes of the CRC
     comb = combinations(list(range(fromRange, toRange)), 2)
     with open(file, 'a+') as f:
         data = f.read()
         # m lets us access the individual bits of the file
         m = mmap.mmap(f.fileno(), 0)
 
-        # Go through the exhaustive list of any two byte values of the CRC
+        # Go through the list of any two bytes of the CRC
         for i in list(comb):
             # Storing the byte indexes
             firstByte = i[0]
             secondByte = i[1]
 
-            #Storing the original byte values (as they need to be restored later)
+            # Storing the original byte values (as they need to be restored later)
             origFirstByte = m[firstByte]
             origSecondByte = m[secondByte]
 
             # Loop to systematically change the byte values: i contains the value we will
-            # set the first byte to, j contains the values of the second byte  
+            # set the first byte to, j contains the value we will set the second byte to  
             for i in range(0, 256):
                 for j in range(0, 256):
                     m[firstByte] = i
