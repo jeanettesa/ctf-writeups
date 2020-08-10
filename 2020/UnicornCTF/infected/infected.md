@@ -67,10 +67,11 @@ def changeFile(file, fromRange, toRange):
                     m[firstByte] = i
                     m[secondByte] = j
                     m.flush()  # Write changes to file
-                    # We Check if the zip file still errors, calling 7zip as a subroutine
-                    code = subprocess.run(["7z", "l", "-slt", file], stdout=subprocess.DEVNULL, stderr=subprocess.DEVNULL).returncode
+                    # We Check if the zip file still errors, calling 7zip as a subroutine (suppressing output)
+                    code = subprocess.run(["7z", "l", "-slt", file], stdout=subprocess.DEVNULL,
+                                          stderr=subprocess.DEVNULL).returncode
                     if code == 0:
-                        print("The right sequence is:", m[fromRange:toRange])
+                        print("The right CRC sequence is:", m[fromRange:toRange])
                         m.close()
                         f.close()
                         exit(0)
@@ -85,7 +86,7 @@ changeFile('REALLY FLAG IS HERE.zip', 14, 18)
 ```
 
 When the code finishes executing, we get the following output:  \
-The right sequence is: b'\x8a\xfaL\x0b'
+The right CRC sequence is: b'\x8a\xfaL\x0b'
 
 Now we can get the flag:  \
 `$ unzip REALLY FLAG IS HERE.zip` (insert password: infected)  \
