@@ -8,7 +8,7 @@ A team gets an additional 100 points if they describe in ls @ hexadec1mal a way 
 Link to zip: https://mega.nz/file/f1sUAaLB#mpfkfCzWNh7AWMxoT08YincX1xW3cdfjxEWuN4ykido
 
 ## Personal note
-To do this problem I decided to use Python. My attempt was based on brute force. I had not worked on a similar problem before, and finished just after the competition closed. Still it was an interesting exercise, and a good learning experience.
+To do this problem I decided to use Python. My attempt was based on brute force. I had not worked on a similar problem before, and finished just after the competition closed. Still, it was an interesting exercise, and a good learning experience.
 
 ## Concepts
 ### Zip headers
@@ -67,7 +67,7 @@ def changeFile(file, fromRange, toRange):
                     m[firstByte] = i
                     m[secondByte] = j
                     m.flush()  # Write changes to file
-                    # We Check if the zip file still errors, calling 7zip as a subroutine (suppressing output)
+                    # Check if the zip file still errors, calling 7zip as a subroutine (suppressing output)
                     code = subprocess.run(["7z", "l", "-slt", file], stdout=subprocess.DEVNULL,
                                           stderr=subprocess.DEVNULL).returncode
                     if code == 0:
@@ -90,5 +90,5 @@ The right CRC sequence is: b'\x8a\xfaL\x0b'
 
 Now we can get the flag:  \
 `$ unzip REALLY FLAG IS HERE.zip` (insert password: infected)  \
-`$ cat REALLY\ FLAG\ IS\ HERE.txt`  \
+`$ cat REALLY\ FLAG\ IS\ HERE.txt`  
 unictf{n4ughty_crc_h4sh}
