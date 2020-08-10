@@ -89,6 +89,6 @@ When the code finishes executing, we get the following output:  \
 The right CRC sequence is: b'\x8a\xfaL\x0b'
 
 Now we can get the flag:  \
-`$ unzip REALLY FLAG IS HERE.zip` (insert password: infected)  \
-`$ cat REALLY\ FLAG\ IS\ HERE.txt`  
+`$ unzip "REALLY FLAG IS HERE.zip"` (insert password: infected)  \
+`$ cat "REALLY FLAG IS HERE.txt"`  
 unictf{n4ughty_crc_h4sh}
