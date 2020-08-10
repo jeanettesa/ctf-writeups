@@ -31,7 +31,7 @@ This command returns 0 if no errors.
 ## Solution
 First I tried to unzip the file, but the specified password was not accepted.
 
-Reading about zip file structure, I found that the CRC was located in byte 14-17 of the local file header.
+Reading about zip file structure, I found that the CRC was located in byte 14-17 of the local file header. Since two bytes in this section has been altered, we need to restore the correct byte values (thus correcting the zip file error). 
 
 I looked for a command to check for errors in the zip file (so that I would know when the error was corrected) and played around with changing the CRC in hexeditor.
 
