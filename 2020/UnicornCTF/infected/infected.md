@@ -43,14 +43,14 @@ import subprocess
 from itertools import combinations
 
 def changeFile(file, fromRange, toRange):
-    # Store the list of any two bytes of the CRC
+    # Store the list of any two bytes of the CRC (when fromRange is 14, toRange is 18)
     comb = combinations(list(range(fromRange, toRange)), 2)
     with open(file, 'a+') as f:
         data = f.read()
-        # m lets us access the individual bits of the file
+        # m now lets us access the individual bytes of the file
         m = mmap.mmap(f.fileno(), 0)
 
-        # Go through the list of any two bytes of the CRC
+        # Go through the list of any two bytes of the CRC (when fromRange is 14, toRange is 18)
         for i in list(comb):
             # Storing the byte indexes
             firstByte = i[0]
