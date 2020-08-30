@@ -7,6 +7,8 @@ A team gets an additional 100 points if they describe in ls @ hexadec1mal a way 
 
 Link to zip: https://mega.nz/file/f1sUAaLB#mpfkfCzWNh7AWMxoT08YincX1xW3cdfjxEWuN4ykido
 
+**Category: Misc**
+
 ## Personal note
 To do this problem I decided to use Python. My attempt was based on brute force. I had not worked on a similar problem before, and finished just after the competition closed. Still, it was an interesting exercise, and a good learning experience.
 
