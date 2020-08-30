@@ -49,8 +49,8 @@ So it seems to be memory from Windows 7 that has been written to the file.
 
 Now that we know the (likely) profile, we can try to get more information needed for the flag. If we get information about the virtual address of certain windows registry hives (i.e., branches of the windows registry that are stored in files), we can use this information to solve the tasks of getting the computer name, username, and password.
 
-To get information about the computer name, we need information about *\REGISTRY\MACHINE\SYSTEM* . \
-To get username and password hashes, we need information about *\REGISTRY\MACHINE\SYSTEM* and *\SystemRoot\System32\Config\SAM* .
+To get information about the computer name, we need information about *\REGISTRY\MACHINE\SYSTEM*. \
+To get username and password hashes, we need information about *\REGISTRY\MACHINE\SYSTEM* and *\SystemRoot\System32\Config\SAM*.
 
 Command to get registry hive information: \
 `$ volatility -f foren.raw --profile=Win7SP1x64 hivelist`
@@ -66,10 +66,10 @@ Virtual&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&
 To get the computer name, we can use the following command (the -o argument is a reference to the virtual address of \REGISTRY\MACHINE\SYSTEM): \
 `$ volatility -f foren.raw --profile=Win7SP1x64 printkey -o 0xfffff8a000024010 -K 'ControlSet001\Control\ComputerName\ComputerName'`
 
-Selected output (own emphasis): \
-*REG_SZ        ComputerName    : (S) <strong>FORENWARMUP</strong>*
+Selected output: \
+*REG_SZ        ComputerName    : (S) FORENWARMUP*
 
-So now we know the computer name needed for the flag is **FORENWARMUP**.
+So now we know that the computer name needed for the flag is **FORENWARMUP**.
 
 ### Get username and password
 To get the username and password hashes, we can use the following command (the -y argument is a reference to the virtual address of \REGISTRY\MACHINE\SYSTEM, the -s argument is a reference to the virtual address of \SystemRoot\System32\Config\SAM): \
@@ -98,10 +98,12 @@ Next, we can use the hash to get the password from the site [crackstation](https
 Crackstation uses a pre-computed lookup table to crack password hashes, storing a mapping from hash to password.
 Thus, if the hash is mapped to the password in the lookup table, it is very quick to find the password.
 
-From the crackstation website, we can enter the hash (*a9fdfa038c4b75ebc76dc855dd74f0da*), and click the 'Crack Hashes' button, and the password is found (own emphasis):
+From the crackstation website, we can enter the hash (*a9fdfa038c4b75ebc76dc855dd74f0da*), and click the 'Crack Hashes' button, and the password is found:
 
 *Hash&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Type&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Result \
-a9fdfa038c4b75ebc76dc855dd74f0da&nbsp;&nbsp;&nbsp;&nbsp;NTLM&nbsp;&nbsp;&nbsp;&nbsp;<strong>password123</strong>*
+a9fdfa038c4b75ebc76dc855dd74f0da&nbsp;&nbsp;&nbsp;&nbsp;NTLM&nbsp;&nbsp;&nbsp;&nbsp;password123*
+
+Thus, the password needed for the flag is **password123**.
 
 ### Flag
 
