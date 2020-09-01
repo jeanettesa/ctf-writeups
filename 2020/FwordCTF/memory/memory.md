@@ -23,7 +23,7 @@ This was the first time I attempted a forensics challenge. It was the first time
 I used the following tutorials to find the relevant info:
 * https://www.aldeid.com/wiki/Volatility/Retrieve-hostname
 * https://www.aldeid.com/wiki/Volatility/Retrieve-password
-* https://www.andreafortuna.org/2017/07/03/volatility-my-own-cheatsheet-part-2-processes-and-dlls/
+* https://www.andreafortuna.org/2017/07/03/volatility-my-own-cheatsheet-part-2-processes-and-dlls/ (some info about envars)
 
 ## Solution
 First I downloaded the zip file and extracted it:
