@@ -87,9 +87,9 @@ Exception: not allowed!!
 Exception: not allowed!!
 ```
 
-Thus, we can not import modules the traditional way, and the os keyword is blacklisted.
-So we need to find another way to get the flag. Examining sandbox.py gives
-us some hints. We have access to the script variables from the coding environment,
+Thus, we can not import modules the traditional way, and the words "os" and "system"
+are blacklisted. So we need to find another way to get the flag. Examining sandbox.py
+gives us some hints. We have access to the script variables from the coding environment,
 but the easiest way to examine how the code works (without being bothered by
 the blacklist) is to paste it into our own python3 interpreter:
 
@@ -115,8 +115,21 @@ b64decode
 ```
 
 Now we know we can b64decode strings using the HrjYMvtxwA variable. This could
-be a way to circumvent the blacklist. We also have access to the numpy module.
+be a way to circumvent the blacklist.
 
+Maybe we can put code into b64encoded strings, b64decode the strings,
+and then run the decoded strings with either eval or exec?
+
+Checking the coding environment:
+```
+EduPy 3.8.2
+>>> eval
+Exception: not allowed!!
+>>> exec
+Exception: not allowed!!
+```
+
+Seems eval or exec will not work. However, we also have access to the numpy module.
 We can examine the numpy module further in our own python3 interpreter:
 ```
 >>> print(RMbPOQHCzt.__dict__)
