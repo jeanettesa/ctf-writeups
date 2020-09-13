@@ -161,7 +161,7 @@ It is not possible to get a property using a string when using dot notation.
 SyntaxError: invalid syntax
 ```
 
-Actually, sandbox.py uses an alternative approach:
+Actually, sandbox.py uses an alternative approach to call base64.b64decode:
 ```
 HrjYMvtxwA = getattr(__import__(AAnBLJqtRv), bAfGdqzzpg)
 ```
