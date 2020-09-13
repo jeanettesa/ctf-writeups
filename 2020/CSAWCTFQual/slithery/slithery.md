@@ -149,9 +149,10 @@ So let's see if the os module is also exposed:
 ```
 
 This looks really promising. However, we still have the problem that we can not access
-the os property directly from the coding environment, since the word "os" is blacklisted. To get around this restriction, we can first b64encode the word, and then b64decode it.
+the os attribute directly from the coding environment, since the word "os" is blacklisted.
+To get around this restriction, we can first b64encode the word, and then b64decode it.
 The problem then is that we will only have access to "os" as a string.
-It is not possible to get a property using a string when using dot notation.
+It is not possible to get an attribute using a string when using dot notation.
 
 ```
 >>> print(RMbPOQHCzt."os")
@@ -178,7 +179,7 @@ getattr(...)
     Get a named attribute from an object; getattr(x, 'y') is equivalent to x.y.
 ```
 
-Using `getattr`, it should be possible to access the os property through "os" as a string.
+Using `getattr`, it should be possible to access the os attribute through "os" as a string.
 
 Let's craft our solution in our own interpreter before trying it in the coding environment:
 ```
