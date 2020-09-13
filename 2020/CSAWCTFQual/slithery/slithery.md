@@ -161,7 +161,7 @@ It is not possible to get a property using a string when using dot notation.
 SyntaxError: invalid syntax
 ```
 
-Actually, sandbox.py uses an alternative approach to call base64.b64decode:
+Actually, sandbox.py uses an alternative approach to access base64.b64decode:
 ```
 HrjYMvtxwA = getattr(__import__(AAnBLJqtRv), bAfGdqzzpg)
 ```
@@ -178,7 +178,7 @@ getattr(...)
     Get a named attribute from an object; getattr(x, 'y') is equivalent to x.y.
 ```
 
-Using `getattr`, it should be possible to access the os property through a string.
+Using `getattr`, it should be possible to access the os property through the word "os" as a string.
 
 Let's craft our solution in our own interpreter before trying it in the coding environment:
 ```
