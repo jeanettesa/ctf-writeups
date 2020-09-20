@@ -74,13 +74,13 @@ s.
 
 
 ## Solving the challenge
-The data contain a pickled (serialized) Python object. Pickling converts a
+The `data` file contains a pickled (serialized) Python object. Pickling converts a
 Python object hierarchy into a byte stream, while unpickling is the reverse process.
 To solve the challenge we need to unpickle (deserialize) the object, using the
 `pickle.load(file, *, fix_imports=True, encoding='ASCII', errors='strict')`
-method, to read the flag.
+method.
 
-Unpickle `data` file into a variable (`content`):
+Unpickle `data` file into a variable `content`:
 
 ```
 import pickle
