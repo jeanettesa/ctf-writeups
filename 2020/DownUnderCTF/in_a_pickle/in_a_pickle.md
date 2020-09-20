@@ -100,7 +100,6 @@ Examining the `content` variable:
 
 >>> type(content)
 <class 'dict'>
-
 ```
 
 The `content` variable is a `dict`. Looking at the values, we can identify that all values belonging to key 4-22 are stored as ASCII decimal. Thus, we need to convert the
