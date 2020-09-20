@@ -110,7 +110,7 @@ using the `chr(i)` function.
 Storing the flag in a `flag` variable:
 ```
 flag = ""
-for key in sorted(content)[:-1]: # Sorting dict to ensure order. Omitting the (string) value from the last key (24)
+for key in sorted(content)[:-1]: # Sorting dict to ensure correct ordering. Omitting the (string) value from the last key (24)
     val = content[key]
     if isinstance(val, int):
         val = chr(val)  # Transforming ASCII decimal to character
