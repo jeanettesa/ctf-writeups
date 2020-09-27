@@ -17,9 +17,10 @@ Checked current working directory: \
 ![](./pwd_scaled.png)
 
 
-Since it is Ubuntu, thought I would first check .bashrc and .profile: \
-*wolfie@9ad161dbc9ce:~$ cat .bashrc .profile*
+Since it is Ubuntu 16.04, thought I would first check .bashrc and .profile
+config files:
 ```
+wolfie@9ad161dbc9ce:~$ cat .bashrc .profile
 # ~/.bashrc: executed by bash(1) for non-login shells.
 # see /usr/share/doc/bash/examples/startup-files (in the package bash-doc)
 # for examples
@@ -37,8 +38,7 @@ HISTCONTROL=ignoreboth
 (...)
 ```
 
-Didn't find any configuration except the default, but the `HISTCONTROL` parameter made me
-look for the flag using the history command: \
+Didn't find any interesting configuration, just the default, but the `HISTCONTROL` parameter made me look for the flag using the history command: \
 ![](./history_scaled.png)
 
 Turns out that `/home/wolfie/imp/flag.txt` contains the flag: \
