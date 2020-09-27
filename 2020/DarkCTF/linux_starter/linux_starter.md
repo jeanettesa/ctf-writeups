@@ -10,6 +10,9 @@ ssh wolfie@linuxstarter.darkarmy.xyz -p 8001 password : wolfie
 
 Connected to the server through ssh.
 
+The problem is that many of the bash commands will not execute, since we are running
+within a restricted shell. In this case, I tried different commands until I found the ones that worked for solving the challenge.
+
 Found the OS:
 
 ![](./os_scaled.png)
