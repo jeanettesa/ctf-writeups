@@ -43,7 +43,7 @@ HISTCONTROL=ignoreboth
 ```
 
 Didn't find any interesting configuration, just the default, but the `HISTCONTROL` parameter in `.bashrc` made me think that maybe we can find something interesting
-using the history command:
+using the `history` command:
 
 ![](./history_scaled.png)
 
