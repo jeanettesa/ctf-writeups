@@ -10,15 +10,16 @@ ssh wolfie@linuxstarter.darkarmy.xyz -p 8001 password : wolfie
 
 Connected to the server through ssh.
 
-Found the OS: \
+Found the OS:
+
 ![](./os_scaled.png)
 
-Checked current working directory: \
+Checked current working directory:
+
 ![](./pwd_scaled.png)
 
 
-Since it is Ubuntu 16.04, thought I would first check .bashrc and .profile
-config files:
+Since it is Ubuntu 16.04, thought I would take a quick look at the .bashrc and .profile configuration files:
 ```
 wolfie@9ad161dbc9ce:~$ cat .bashrc .profile
 # ~/.bashrc: executed by bash(1) for non-login shells.
@@ -38,8 +39,11 @@ HISTCONTROL=ignoreboth
 (...)
 ```
 
-Didn't find any interesting configuration, just the default, but the `HISTCONTROL` parameter made me look for the flag using the history command: \
+Didn't find any interesting configuration, just the default, but the `HISTCONTROL` parameter in `.bashrc` made me think that maybe we can find something interesting
+using the history command:
+
 ![](./history_scaled.png)
 
-Turns out that `/home/wolfie/imp/flag.txt` contains the flag: \
+Turns out that `/home/wolfie/imp/flag.txt` contains the flag:
+
 ![](./flag_scaled.png)
