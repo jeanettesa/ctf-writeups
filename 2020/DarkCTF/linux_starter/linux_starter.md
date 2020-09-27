@@ -41,5 +41,5 @@ Didn't find any configuration except the default, but the `HISTCONTROL` paramete
 look for the flag using the history command: \
 ![](./history_scaled.png)
 
-Turns out that `/home/wolfie/imp/flag.txt` has the flag: \
+Turns out that `/home/wolfie/imp/flag.txt` contains the flag: \
 ![](./flag_scaled.png)
