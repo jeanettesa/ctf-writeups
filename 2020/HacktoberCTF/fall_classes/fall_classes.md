@@ -116,4 +116,4 @@ before printing the number of matching `'course_id,term_id'` instances.
 So now we know that 401 courses were offered in the FALL2020 semester.
 
 Thus, according to the flag format, given in the description, the flag is \
-`flag{401}`
+`flag{401}`.
