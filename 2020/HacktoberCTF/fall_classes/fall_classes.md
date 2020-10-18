@@ -44,7 +44,7 @@ The instances of this table are in the format:
 ```
 
 To find courses offered in the FALL2020 term, we need to find out the `term_id`
-of `FALL2020`.
+of FALL2020.
 
 ```
 $ grep "FALL2020" shallowgraveu.sql
@@ -61,7 +61,7 @@ As a reminder, `term_courses` instances are in the format: \
 `(term_crs_id,course_id,term_id,instructor)`
 
 Therefore, the regex should match the following format: \
-`(Num,num,2,num)`
+`(num,num,2,num)`
 
 However, we should only extract pairs matching `course_id,term_id` (for this
 purpose we will add a capture group to the regex).
@@ -91,7 +91,7 @@ First, we import the `re` library, and read database dump line 324 into a variab
 >>> with open("../shallowgraveu.sql") as f:
 ...     for i, line in enumerate(f):
 ...         if i == 323:  # i is 0-indexed so we start at line 0 instead of 1
-...             the_line=line
+...             the_line = line
 ...             break
 ```
 
@@ -105,7 +105,7 @@ the match variable will be a list, containing all matching `'course_id,term_id'`
 ```
 
 To remove duplicate pairs in the `match` variable, we transform it from a list to a set,
-before printing the number of matching 'course_id,term_id' instances.
+before printing the number of matching `'course_id,term_id'` instances.
 
 ```
 >>> len(set(match))
