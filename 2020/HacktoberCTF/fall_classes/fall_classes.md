@@ -97,7 +97,7 @@ First, we import the `re` library, and read database dump line 324 into a variab
 
 Next, we can use `re.findall` to match our regex against `the_line`.
 Due to embedding course_id and term_id in parentheses in the regex (thus using a capture group),
-the match variable will be a list, containing all `'course_id,term_id'` pairs.
+the match variable will be a list, containing all matching `'course_id,term_id'` pairs.
 ```
 >>> match = re.findall("\([0-9]{1,4},([0-9]{1,4},2),[0-9]{1,4}\)", the_line)
 >>> print(match)
