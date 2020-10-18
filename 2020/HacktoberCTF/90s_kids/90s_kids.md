@@ -57,7 +57,7 @@ it should be easy to make a regex that matches only for users born in
 October in the 90s.
 
 Considering the `dob` format `'yyyy-mm-dd'`, the regex needs to match
-`'199y-10-dd'`
+`'199y-10-dd'`.
 
 We can use python to solve the challenge. Python has the `re` library for regex.
 The `re.findall` function will be useful:
@@ -76,7 +76,9 @@ findall(pattern, string, flags=0)
 
 The following python code will help us to find the flag:
 
-First, we import the `re` library, and read database dump line 390 into a variable, `the_line`:
+First, we import the `re` library, and read database dump line 390 (containing all
+user instances) into a variable, `the_line`:
+
 ```
 >>> import re
 >>>
