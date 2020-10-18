@@ -83,7 +83,8 @@ findall(pattern, string, flags=0)
 
 The following python code will help us to find the flag:
 
-First, we import the `re` library, and read database dump line 324 into a variable, `the_line`:
+First, we import the `re` library, and read database dump line 324 (containing all
+term_courses instances) into a variable, `the_line`:
 ```
 >>> import re
 >>>
