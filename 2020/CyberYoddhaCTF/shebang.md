@@ -1,6 +1,13 @@
 # shebang0-5
 
-## shebang0
+1. [shebang0](#shebang0)
+2. [shebang1](#shebang1)
+3. [shebang2](#shebang2)
+4. [shebang3](#shebang3)
+5. [shebang4](#shebang4)
+6. [shebang5](#shebang5)
+
+## shebang0 <a name="shebang0"></a>
 Author: stephencurry396 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
 Points: 125
 
@@ -41,7 +48,7 @@ CYCTF{w3ll_1_gu3$$_b@sh_1s_e@zy}
 
 Thus, the flag is `CYCTF{w3ll_1_gu3$$_b@sh_1s_e@zy}`.
 
-## shebang1
+## shebang1 <a name="shebang1"></a>
 Author: stephencurry396 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
 Points: 125
 
@@ -89,7 +96,7 @@ flag.txt:CYCTF{w3ll_1_gu3$$_y0u_kn0w_h0w_t0_gr3p}
 
 So the flag for shebang1 is `CYCTF{w3ll_1_gu3$$_y0u_kn0w_h0w_t0_gr3p}`.
 
-## shebang2
+## shebang2 <a name="shebang2"></a>
 Author: stephencurry396 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
 Points: 150
 
@@ -165,7 +172,7 @@ $ grep -rv "This is not a flag"
 
 Thus, the flag for shebang2 is: `CYCTF{W0w_th@t$_@_l0t_0f_f1l3s}`.
 
-## shebang3
+## shebang3 <a name="shebang3"></a>
 Author: stephencurry396 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
 Points: 150
 
@@ -238,7 +245,7 @@ F
 
 Thus, the flag for shebang3 is: `CYCTF{SPOT_TH3_D1FF}`.
 
-## shebang4
+## shebang4 <a name="shebang4"></a>
 Author: stephencurry396 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
 Points: 200
 
@@ -270,7 +277,7 @@ Viewing the `flag.png` image showed the flag:
 
 So the flag for shebang4 is: `CYCTF{W3ll_1_gu3$$_th@t_w@s_actually_easy}`.
 
-## shebang5
+## shebang5 <a name="shebang5"></a>
 Author: stephencurry396 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
 Points: 250
 
