@@ -73,7 +73,7 @@ Never gonna make you cry
 (....)
 ```
 
-File `flag.txt` contained a lot of information. The `wc` command suggested
+File `flag.txt` contained a lot of information. According to the `wc` command
 it contained 9522 lines.
 
 ```
