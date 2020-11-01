@@ -22,7 +22,7 @@ $ ssh shebang0@cyberyoddha.baycyber.net -p 1337
 shebang0@cyberyoddha.baycyber.net's password: # insert password shebang0
 ```
 
-Used `ls` command to look for the flag in the current folder:
+Used `ls` command to look for the flag in the current directory:
 ```
 $ ls -al
 total 12
@@ -51,7 +51,7 @@ This challenge is simple.
 ### Solution
 Connected via ssh with user shebang1.
 
-Listed files in the current folder:
+Listed files in the current directory:
 ```
 $ ls
 flag.txt
@@ -99,7 +99,7 @@ This is a bit harder.
 ### Solution
 Connected via ssh with user shebang2.
 
-`ls` showed current directory had a lot of folders:
+`ls` showed current directory had a lot of directories:
 
 ```
 $ ls -al
@@ -164,3 +164,76 @@ $ grep -rv "This is not a flag"
 ```
 
 Thus, the flag for shebang2 is: `CYCTF{W0w_th@t$_@_l0t_0f_f1l3s}`.
+
+## shebang3
+Author: stephencurry396 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+Points: 150
+
+### Problem description
+These files are the same...
+
+### Solution
+Connected via ssh as user shebang3.
+
+Executing the `ls` command in the current directory showed two files:
+
+```
+$ ls
+file.txt  file2.txt
+```
+
+The problem description gives a clue that we need to find differences between
+the files.
+
+In [stackoverflow](https://stackoverflow.com/questions/18204904/fast-way-of-finding-lines-in-one-file-that-are-not-in-another)
+I found a solution to find lines in one file that are not in the other:
+
+```
+$ grep -F -x -v -f file.txt file2.txt
+C
+Y
+C
+T
+F
+{
+S
+P
+T
+T
+H
+F
+F
+}
+(...)
+```
+
+The string looked promising, but submitting it showed it was not the entire
+flag. So I tried to `grep` for all lines with exactly one character in `file.txt`:
+
+```
+$ grep "^.$" file2.txt
+1
+C
+Y
+C
+T
+F
+{
+S
+P
+O
+T
+_
+T
+H
+3
+_
+D
+1
+F
+F
+}
+(...)
+```
+
+Thus, the flag for shebang3 is: `CYCTF{SPOT_TH3_D1FF}`.
