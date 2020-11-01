@@ -248,7 +248,7 @@ Since you have been doing so well, I thought I would make this an easy one.
 ### Solution
 Connected via ssh as user shebang4.
 
-Listing current directory contents showed the flag in a `png` file:
+Listing current directory contents showed a file called `flag.png`:
 
 ```
 $ ls
@@ -256,7 +256,7 @@ flag.png
 ```
 
 To make it easier to view the file, I disconnected from ssh and transferred
-the image file to my own computer using `scp`:
+the file to my own computer using `scp`:
 ```
 $ scp -P1337 shebang4@cyberyoddha.baycyber.net:/home/shebang4/flag.png .
 shebang4@cyberyoddha.baycyber.net's password:
@@ -264,7 +264,7 @@ flag.png
 100%   12KB  62.4KB/s   00:00
 ```
 
-Viewing the image showed the flag:
+Viewing the `flag.png` image showed the flag:
 
 ![flag4](./flag_shebang4.png)
 
